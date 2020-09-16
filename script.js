@@ -22,7 +22,7 @@ var theScoreContainer = document.getElementById("theScoreContainer");
 // END OF VARIABLES
 
 // QUESTIONS
-
+theStartButton.addEventListener("click", startQuiz);
 
 var theQtext = [{
     question: "What is the function of Array object that runs through each element of the array?",
@@ -111,12 +111,12 @@ function generateAQ() {
     if (theAmountofQ === theFinalAmountofQ) {
         return showScore();
     }
-    var currentQuestion = theQtext[theAmountofQ];
-    listedQuestions.innerHTML = `<p>${currentQuestion.question}</p>`;
-    button1.innerHTML = currentQuestion.answer1;
-    button2.innerHTML = currentQuestion.answer2;
-    button3.innerHTML = currentQuestion.answer3;
-    button4.innerHTML = currentQuestion.answer4;
+    var theQuestionOn = theQtext[theAmountofQ];
+    listedQuestions.innerHTML = "<p>" + theQuestionOn.question + "<p>";
+    button1.innerHTML = theQuestionOn.answer1;
+    button2.innerHTML = theQuestionOn.answer2;
+    button3.innerHTML = theQuestionOn.answer3;
+    button4.innerHTML = theQuestionOn.answer4;
 }
 
 // STARTING QUIZ
@@ -124,7 +124,7 @@ function startQuiz() {
     theGameOver.style.display = "none";
     theStartPage.style.display = "none";
     generateAQ();
-theStartButton.addEventListener("click", startQuiz);
+
     //Timer
     theTimerInt = setInterval(function () {
         theAmountofTimeLeftover--;
@@ -137,22 +137,7 @@ theStartButton.addEventListener("click", startQuiz);
     }, 1000);
     theQuiz.style.display = "block";
 }
-function isAnswerCorrect(answer) {
-    correct = theQtext[theAmountofQ].isAnswerCorrect;
 
-    if (answer === correct && theAmountofQ !== theFinalAmountofQ) {
-        score++;
-        alert("That Is correct! :)");
-        theAmountofQ++;
-        generateAQ();
-    } else if (answer !== correct && theAmountofQ !== theFinalAmountofQ) {
-        alert("That Is not correct. :(");
-        theAmountofQ++;
-        generateAQ();
-    } else {
-        showScore();
-    }
-}
 // END OF STARTING QUIZ
 
 //SCORES
@@ -168,7 +153,6 @@ scoreSubmission.addEventListener("click", function largestScore() {
             score: score
         };
         theScorePage.style.display = "block";
-        theEndOfGame.style.display = "flex";
         theGameOver.style.display = "none";
         theScoreContainer.style.display = "flex";
         allSavedScores.push(currentScore);
@@ -198,11 +182,25 @@ function showScore() {
     theGameOver.style.display = "none";
     theScoreContainer.style.display = "flex";
     theScorePage.style.display = "block";
-    theEndOfGame.style.display = "flex";
 
     generateTheScores();
 }
-// END OF SCORES
+function isAnswerCorrect(answer) {
+    correct = theQtext[theAmountofQ].correctAnswer;
+
+    if (answer === correct && theAmountofQ !== theFinalAmountofQ) {
+        score++;
+        alert("That Is correct! :)");
+        theAmountofQ++;
+        generateAQ();
+    } else if (answer !== correct && theAmountofQ !== theFinalAmountofQ) {
+        alert("That Is not correct. :(");
+        theAmountofQ++;
+        generateAQ();
+    } else {
+        showScore();
+    }
+}// END OF SCORES
 function clearScore() {
     window.localStorage.clear();
     typedFirstName.textContent = "";
