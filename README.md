@@ -4,4 +4,4 @@ In this assignment, a coding quiz has been made. The user will go through 8 ques
 
 LINK: https://hilaryvalenciawalsh.github.io/code-quiz/
 
-IMAGE: 
+IMAGE: https://github.com/hilaryvalenciawalsh/code-quiz/blob/master/image.png

@@ -17,13 +17,10 @@ var theTimer = document.getElementById("theTimer");
 var theStartButton = document.getElementById("theStartButton");
 var theStartPage = document.getElementById("theStartPage");
 var theScoreContainer = document.getElementById("theScoreContainer");
-
-
 // END OF VARIABLES
 
 // QUESTIONS
 theStartButton.addEventListener("click", startQuiz);
-
 var theQtext = [{
     question: "What is the function of Array object that runs through each element of the array?",
     answer1: "concat()",
@@ -88,24 +85,23 @@ var theQtext = [{
     correctAnswer: "1",
 },
 ];
-// END OF QUESTIONS    
+// END OF QUESTIONS 
+// EXTRA VARIABLES    
 var theAmountofQ = 0;
 var theTimerInt;
 var theFinalAmountofQ = "theQtext.length";
 var score = 0;
 var correct;
 var theAmountofTimeLeftover = 80;
-
-
+// END OF EXTRA VARIABLES
+// EXTRA SCORE ITEMS, NEEDED TO BE BEFORE QUIZ START
 function showScore() {
     theQuiz.style.display = "none";
     theGameOver.style.display = "flex";
     theEndingScore.innerHTML = "You got " + score + " out of " + theQtext.length + " correct!";
     clearInterval(theTimerInt);
     firstName.value = "";
-
 }
-
 function generateAQ() {
     theGameOver.style.display = "none";
     if (theAmountofQ === theFinalAmountofQ) {
@@ -118,14 +114,11 @@ function generateAQ() {
     button3.innerHTML = theQuestionOn.answer3;
     button4.innerHTML = theQuestionOn.answer4;
 }
-
 // STARTING QUIZ
 function startQuiz() {
     theGameOver.style.display = "none";
     theStartPage.style.display = "none";
     generateAQ();
-
-    //Timer
     theTimerInt = setInterval(function () {
         theAmountofTimeLeftover--;
         theTimer.textContent = "Time left: " + theAmountofTimeLeftover;
@@ -137,7 +130,6 @@ function startQuiz() {
     }, 1000);
     theQuiz.style.display = "block";
 }
-
 // END OF STARTING QUIZ
 
 //SCORES
@@ -158,11 +150,8 @@ scoreSubmission.addEventListener("click", function largestScore() {
         allSavedScores.push(currentScore);
         localStorage.setItem("allSavedScores", JSON.stringify(allSavedScores));
         generateTheScores();
-
     }
-
 });
-
 function generateTheScores() {
     typedFirstName.innerHTML = "";
     theTopScore.innerHTML = "";
@@ -176,18 +165,15 @@ function generateTheScores() {
         theTopScore.appendChild(newScore);
     }
 }
-
 function showScore() {
     theStartPage.style.display = "none";
     theGameOver.style.display = "none";
     theScoreContainer.style.display = "flex";
     theScorePage.style.display = "block";
-
     generateTheScores();
 }
 function isAnswerCorrect(answer) {
     correct = theQtext[theAmountofQ].correctAnswer;
-
     if (answer === correct && theAmountofQ !== theFinalAmountofQ) {
         score++;
         alert("That Is correct! :)");
@@ -201,6 +187,7 @@ function isAnswerCorrect(answer) {
         showScore();
     }
 }// END OF SCORES
+
 function clearScore() {
     window.localStorage.clear();
     typedFirstName.textContent = "";
@@ -208,9 +195,10 @@ function clearScore() {
 }
 function restartQuiz() {
     theScoreContainer.style.display = "none";
-    theGameOver.style.display = "none";
     theStartPage.style.display = "flex";
     theAmountofTimeLeftover = 80;
+    theGameOver.style.display = "none";
+   
     score = 0;
     theAmountofQ = 0;
 }
