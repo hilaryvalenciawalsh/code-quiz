@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>JAVASCRIPT QUIZ</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="theStartPage">
+            <h2>This quiz will test you on all things Javascript!</h2>
+        <button id="theStartButton">You ready? Click me to start quiz!</button>
+        <button id="theStartPageScores" onclick="showScore()">Scores</button>
+        </div>
+
+        <div id="theQuiz">
+            <div id="theTimer">Time left: </div>
+                <div id="listedQuestions"><p>Questions</p></div>
+                    <button id="1" onclick="isAnswerCorrect('1')">1</button>
+                    <button id="2" onclick="isAnswerCorrect('2')">2</button>
+                    <button id="3" onclick="isAnswerCorrect('3')">3</button>
+                    <button id="4" onclick="isAnswerCorrect('4')">4</button>
+                <div id="theResult"></div>
+        </div>
+        <div id="theGameOver">
+
+            <div id="theEndingScore"></div>
+            <input type="text" size = "48" placeholder="Enter you first name to be on the score boards!" name="firstname" id="firstName"/>
+            <button id="scoreSubmission">Submit your Score!</button>
+        </div>
+        <div id=theScoreContainer>
+        <div id="theScorePage">
+            <div id="theScoreHeader">
+                <h3>First Name</h3>
+                <h3>Score</h3>
+            </div>
+            <div id = "typedFirstName"></div>
+            <div id = "theTopScore"></div>
+        </div>
+        <div id="theEndofGame">
+            <button id="restart" onclick="restartQuiz()">Restart Quiz</button>
+            <button id="clearScore" onclick="clearScore()">Clear all Scores</button>
+        </div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
